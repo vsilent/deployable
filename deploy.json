@@ -1,0 +1,67 @@
+{
+  "region": "fsn1",
+  "server": "cx21",
+  "os": "ubuntu-20.04",
+  "disk_type": "pd-standart",
+  "trydirect_token": "{{TRYDIRECT_TOKEN}}",
+  "cloud_token": "{{HETZNER_CLOUD_TOKEN}}",
+  "provider": "htz",
+  "stack_code": "myapp",
+  "selected_plan": "free",
+  "custom": {
+    "web": [
+      {
+        "name": "MyApp",
+        "code": "myapp",
+        "role": [
+          "custom"
+        ],
+        "type": "web",
+        "default": true,
+        "description": "My app description",
+        "cpu": "0.0",
+        "ram_size": "1G",
+        "disk_size": "5G",
+        "dockerhub_user": "trydirect",
+        "dockerhub_repo": "deployable",
+        "domain": "latestports.com",
+        "sharedPorts": [
+          {
+            "host_port": "8090",
+            "container_port": "8090"
+          }
+        ],
+        "main": true,
+        "environment": [
+          {
+            "ENV_VAR1": "ENV_VAR1_VALUE"
+          },
+          {
+            "ENV_VAR2": "ENV_VAR2_VALUE"
+          }
+        ],
+        "network": [
+          "default_network"
+        ],
+        "restart": "always",
+        "volumes": [
+          {
+            "host_path": "./env-chat",
+            "container_path": "/app/.env-chat"
+          },
+          {
+            "host_path": "./my-conversation.json",
+            "container_path": "/app/my-conversation.json"
+          }
+        ]
+      }
+    ],
+    "servers_count": 1,
+    "project_name": "MyApp",
+    "custom_stack_code": "MyApp",
+    "networks": [
+      "default_network",
+      "another_network"
+    ]
+  }
+}
